@@ -26,7 +26,7 @@ import {
   lazyLoadAssets,
   animate,
   onInteractive,
-} from '@codingheads/lazyload';
+} from '@smartimpact-it/lazyload';
 import imagesLoaded from 'imagesloaded';
 
 onInteractive(() => {

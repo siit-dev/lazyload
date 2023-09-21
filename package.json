@@ -1,5 +1,5 @@
 {
-  "name": "@codingheads/lazyload",
+  "name": "@smartimpact-it/lazyload",
   "version": "2.0.4",
   "description": "A set of lazyload utilities, for images, scripts, styles and iframes",
   "main": "dist/umd/index.js",
@@ -16,6 +16,10 @@
     {
       "name": "Bogdan Barbu",
       "email": "bogdan.b@codingheads.com"
+    },
+    {
+      "name": "Bogdan Barbu",
+      "email": "bbarbu@smartimpact.fr"
     }
   ],
   "license": "GPL-3",
@@ -40,7 +44,7 @@
     "build:types": "node tools/cleanup types && tsc -p config/tsconfig.types.json",
     "clean": "node tools/cleanup",
     "package": "npm run build && npm pack",
-    "addscope": "node tools/packagejson name @codingheads/lazyload",
+    "addscope": "node tools/packagejson name @smartimpact-it/lazyload",
     "postversion": "git push --follow-tags"
   },
   "publishConfig": {
@@ -56,7 +60,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Codingheads-Developer/lazyLoadAssets.git"
+    "url": "git+https://github.com/siit-dev/lazyload.git"
   },
   "dependencies": {
     "imagesloaded": "4.1.4"
@@ -87,7 +91,7 @@
     "webpack-notifier": "^1.14.1"
   },
   "bugs": {
-    "url": "https://github.com/Codingheads-Developer/lazyLoadAssets/issues"
+    "url": "https://github.com/siit-dev/lazyload/issues"
   },
-  "homepage": "https://github.com/Codingheads-Developer/lazyLoadAssets"
+  "homepage": "https://github.com/siit-dev/lazyload"
 }
