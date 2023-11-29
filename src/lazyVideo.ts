@@ -24,7 +24,9 @@ export default class lazyVideo {
         const source = child as HTMLSourceElement;
         if (source.dataset.src) {
           source.src = source.dataset.src;
-          delete source.dataset.src;
+
+          // Deactivated because of a bug in Slick Slider
+          // delete source.dataset.src;
         }
       }
     });
