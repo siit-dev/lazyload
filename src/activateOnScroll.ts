@@ -53,6 +53,9 @@ export default class activateOnScroll {
   #observer = null;
   #element = null;
 
+  // A resize observer to update sizes="auto" attributes
+  static #sizesResizeObserver = null;
+
   static #supportScroll =
     'onscroll' in window &&
     !/(gle|ing)bot/.test(navigator.userAgent) &&
@@ -178,19 +181,41 @@ export default class activateOnScroll {
             image.removeAttribute('data-src');
           }
           image.removeAttribute('data-lazy-img');
-          const srcset = dataset.srcset,
-            sizes = dataset.sizes;
+          const srcset = dataset.srcset;
           if (srcset) {
             image.srcset = srcset;
             image.removeAttribute('data-srcset');
           }
+
+          // Handle sizes attribute
+          let sizes = dataset.sizes;
           if (sizes) {
+            if (sizes === 'auto') {
+              sizes = (image.offsetWidth / window.innerWidth) * 100 + 'vw';
+              activateOnScroll.getSizesResizeObserver()?.observe(image);
+            }
             image.sizes = sizes;
             image.removeAttribute('data-sizes');
           }
         });
       }
     }
+  };
+
+  static getSizesResizeObserver = (): ResizeObserver | null => {
+    if (!this.#sizesResizeObserver && window.ResizeObserver) {
+      this.#sizesResizeObserver = new ResizeObserver(entries => {
+        for (const entry of entries) {
+          const element = entry.target as HTMLImageElement;
+          const newSizes = (element.offsetWidth / window.innerWidth) * 100 + 'vw';
+          if (element.sizes != newSizes) {
+            element.sizes = newSizes;
+          }
+        }
+      });
+    }
+
+    return this.#sizesResizeObserver;
   };
 
   // handle the event when the element gets into the viewport
